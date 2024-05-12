@@ -7,11 +7,8 @@ import androidx.room.Query
 import br.com.rodorush.investmentwalletapp.data.entities.CarteiraEntity
 
 @Dao
-interface CarteiraDao {
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertCarteira(carteira: CarteiraEntity)
+interface CarteiraDao : GenericDao<CarteiraEntity> {
 
     @Query("SELECT * FROM car_carteiras")
-    suspend fun getAllCarteiras(): List<CarteiraEntity>
+    fun getAllCarteiras(): List<CarteiraEntity>
 }
