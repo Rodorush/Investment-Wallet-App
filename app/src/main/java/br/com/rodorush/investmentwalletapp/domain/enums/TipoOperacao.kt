@@ -1,4 +1,4 @@
-package br.com.rodorush.investmentwalletapp.domain.enum
+package br.com.rodorush.investmentwalletapp.domain.enums
 
 enum class TipoOperacao {
     COMPRA, // Operação de compra

@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
-import br.com.rodorush.investmentwalletapp.domain.enum.TipoOperacao
+import br.com.rodorush.investmentwalletapp.domain.enums.TipoOperacao
 
 @Entity(
     tableName = "lat_lancamentos_ativos",
