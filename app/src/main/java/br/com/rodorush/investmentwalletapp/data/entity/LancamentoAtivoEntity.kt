@@ -1,10 +1,10 @@
-package br.com.rodorush.investmentwalletapp.data.entities
+package br.com.rodorush.investmentwalletapp.data.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
-import br.com.rodorush.investmentwalletapp.domain.enums.TipoOperacao
+import br.com.rodorush.investmentwalletapp.domain.enum.TipoOperacao
 
 @Entity(
     tableName = "lat_lancamentos_ativos",

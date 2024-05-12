@@ -1,4 +1,4 @@
-package br.com.rodorush.investmentwalletapp.data.entities
+package br.com.rodorush.investmentwalletapp.data.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

@@ -2,7 +2,7 @@ package br.com.rodorush.investmentwalletapp.data.dao
 
 import androidx.room.Dao
 import androidx.room.Query
-import br.com.rodorush.investmentwalletapp.data.entities.AtivoEntity
+import br.com.rodorush.investmentwalletapp.data.entity.AtivoEntity
 
 @Dao
 interface AtivoDao : GenericDao<AtivoEntity> {

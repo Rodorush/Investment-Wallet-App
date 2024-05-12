@@ -7,9 +7,9 @@ import androidx.room.RoomDatabase
 import br.com.rodorush.investmentwalletapp.data.dao.AtivoDao
 import br.com.rodorush.investmentwalletapp.data.dao.CarteiraDao
 import br.com.rodorush.investmentwalletapp.data.dao.LancamentoAtivoDao
-import br.com.rodorush.investmentwalletapp.data.entities.AtivoEntity
-import br.com.rodorush.investmentwalletapp.data.entities.CarteiraEntity
-import br.com.rodorush.investmentwalletapp.data.entities.LancamentoAtivoEntity
+import br.com.rodorush.investmentwalletapp.data.entity.AtivoEntity
+import br.com.rodorush.investmentwalletapp.data.entity.CarteiraEntity
+import br.com.rodorush.investmentwalletapp.data.entity.LancamentoAtivoEntity
 
 @Database(
     entities = [AtivoEntity::class, CarteiraEntity::class, LancamentoAtivoEntity::class],
