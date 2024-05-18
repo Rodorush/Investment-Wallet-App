@@ -1,6 +1,6 @@
 package br.com.rodorush.investmentwalletapp
 
-import Carteira
+import CadastroCarteira
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -12,14 +12,11 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.ViewModelProvider
 import br.com.rodorush.investmentwalletapp.data.entity.CarteiraEntity
 import br.com.rodorush.investmentwalletapp.data.repository.CarteiraRepository
 import br.com.rodorush.investmentwalletapp.ui.theme.InvestmentWalletAppTheme
@@ -36,20 +33,30 @@ class MainActivity : ComponentActivity() {
                 val viewModel = CarteirasViewModel(carteiraRepository)
                 val carteiras by viewModel.carteiras.collectAsState(initial = emptyList())
 
+                var showCadastroCarteira by remember { mutableStateOf(false) }
+
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
                     topBar = {
                         TopAppBar(
                             title = { Text(stringResource(R.string.app_name)) },
                             actions = {
-                                IconButton(onClick = { /* Navigate to add carteira screen */ }) {
-                                    Icon(Icons.Filled.Add, contentDescription = "Add Carteira")
+                                IconButton(onClick = { showCadastroCarteira = true }) {
+                                    Icon(Icons.Filled.Add, contentDescription = stringResource(R.string.add_carteira))
                                 }
                             }
                         )
                     }
                 ) { innerPadding ->
-                    ListaCarteiras(carteiras, modifier = Modifier.padding(innerPadding))
+                    if (showCadastroCarteira) {
+                        CadastroCarteira(
+                            viewModel = viewModel,
+                            onDismiss = { showCadastroCarteira = false },
+                            modifier = Modifier.padding(innerPadding)
+                        )
+                    } else {
+                        ListaCarteiras(carteiras, modifier = Modifier.padding(innerPadding))
+                    }
                 }
             }
         }

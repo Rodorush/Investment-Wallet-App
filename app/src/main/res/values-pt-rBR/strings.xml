@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Carteiras de Investimento</string>
+    <string name="add_carteira">Criar nova Carteira</string>
 </resources>

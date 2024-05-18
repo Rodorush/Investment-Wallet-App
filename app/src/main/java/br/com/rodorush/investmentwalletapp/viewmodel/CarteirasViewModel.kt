@@ -21,7 +21,7 @@ class CarteirasViewModel(private val carteiraRepository: CarteiraRepository) : V
         }
     }
 
-    suspend fun addCarteira(carteira: CarteiraEntity) {
+    fun addCarteira(carteira: CarteiraEntity) {
         carteiraRepository.insertCarteira(carteira)
     }
 
