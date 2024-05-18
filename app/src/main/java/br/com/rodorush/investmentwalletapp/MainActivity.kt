@@ -1,6 +1,7 @@
 package br.com.rodorush.investmentwalletapp
 
 import CadastroCarteira
+import CarteirasViewModel
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -20,7 +21,6 @@ import androidx.compose.ui.unit.dp
 import br.com.rodorush.investmentwalletapp.data.entity.CarteiraEntity
 import br.com.rodorush.investmentwalletapp.data.repository.CarteiraRepository
 import br.com.rodorush.investmentwalletapp.ui.theme.InvestmentWalletAppTheme
-import br.com.rodorush.investmentwalletapp.viewmodel.CarteirasViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 class MainActivity : ComponentActivity() {

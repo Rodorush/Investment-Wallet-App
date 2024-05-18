@@ -1,5 +1,3 @@
-package br.com.rodorush.investmentwalletapp.viewmodel
-
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.rodorush.investmentwalletapp.data.entity.CarteiraEntity
@@ -8,28 +6,24 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-class CarteirasViewModel(private val carteiraRepository: CarteiraRepository) : ViewModel() {
-
-    // Usando MutableStateFlow para armazenar o estado das carteiras
+class CarteirasViewModel(private val repository: CarteiraRepository) : ViewModel() {
     private val _carteiras = MutableStateFlow<List<CarteiraEntity>>(emptyList())
-    val carteiras: StateFlow<List<CarteiraEntity>> = _carteiras
+    val carteiras: StateFlow<List<CarteiraEntity>> get() = _carteiras
 
     init {
+        loadCarteiras()
+    }
+
+    private fun loadCarteiras() {
         viewModelScope.launch {
-            // Atualize o estado das carteiras quando o ViewModel for criado
-            _carteiras.value = carteiraRepository.getAllCarteiras()
+            _carteiras.value = repository.getAllCarteiras()
         }
     }
 
-    suspend fun addCarteira(carteira: CarteiraEntity) {
-        carteiraRepository.insertCarteira(carteira)
-    }
-
-    suspend fun updateCarteira(carteira: CarteiraEntity) {
-        carteiraRepository.updateCarteira(carteira)
-    }
-
-    suspend fun deleteCarteira(carteira: CarteiraEntity) {
-        carteiraRepository.deleteCarteira(carteira)
+    fun addCarteira(carteira: CarteiraEntity) {
+        viewModelScope.launch {
+            repository.addCarteira(carteira)
+            loadCarteiras()
+        }
     }
 }
