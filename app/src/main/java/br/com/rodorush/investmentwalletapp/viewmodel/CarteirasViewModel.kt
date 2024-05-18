@@ -2,28 +2,31 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.rodorush.investmentwalletapp.data.entity.CarteiraEntity
 import br.com.rodorush.investmentwalletapp.data.repository.CarteiraRepository
-import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
-class CarteirasViewModel(private val repository: CarteiraRepository) : ViewModel() {
-    private val _carteiras = MutableStateFlow<List<CarteiraEntity>>(emptyList())
-    val carteiras: StateFlow<List<CarteiraEntity>> get() = _carteiras
+class CarteirasViewModel(private val carteiraRepository: CarteiraRepository) : ViewModel() {
 
-    init {
-        loadCarteiras()
-    }
-
-    private fun loadCarteiras() {
-        viewModelScope.launch {
-            _carteiras.value = repository.getAllCarteiras()
-        }
-    }
+    val carteiras: StateFlow<List<CarteiraEntity>> = carteiraRepository.getAllCarteiras()
+        .stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
 
     fun addCarteira(carteira: CarteiraEntity) {
         viewModelScope.launch {
-            repository.addCarteira(carteira)
-            loadCarteiras()
+            carteiraRepository.addCarteira(carteira)
+        }
+    }
+
+    fun updateCarteira(carteira: CarteiraEntity) {
+        viewModelScope.launch {
+            carteiraRepository.updateCarteira(carteira)
+        }
+    }
+
+    fun deleteCarteira(carteira: CarteiraEntity) {
+        viewModelScope.launch {
+            carteiraRepository.deleteCarteira(carteira)
         }
     }
 }

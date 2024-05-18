@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Carteiras de Inversión</string>
-    <string name="add_carteira">Crear nueva billetera</string>
+    <string name="add_carteira">Agregar Cartera</string>
+    <string name="edit_carteira">Editar Cartera</string>
+    <string name="delete_carteira">Eliminar Cartera</string>
+    <string name="confirm_delete_carteira">¿Estás seguro de que deseas eliminar %1$s?</string>
+    <string name="confirm">Confirmar</string>
+    <string name="cancel">Cancelar</string>
     <string name="nome_da_carteira">Nombre de la billetera</string>
     <string name="salvar">Ahorrar</string>
 </resources>

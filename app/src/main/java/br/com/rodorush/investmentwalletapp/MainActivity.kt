@@ -12,6 +12,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -34,6 +36,8 @@ class MainActivity : ComponentActivity() {
                 val carteiras by viewModel.carteiras.collectAsState(initial = emptyList())
 
                 var showCadastroCarteira by remember { mutableStateOf(false) }
+                var carteiraToEdit by remember { mutableStateOf<CarteiraEntity?>(null) }
+                var carteiraToDelete by remember { mutableStateOf<CarteiraEntity?>(null) }
 
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
@@ -48,14 +52,44 @@ class MainActivity : ComponentActivity() {
                         )
                     }
                 ) { innerPadding ->
-                    if (showCadastroCarteira) {
+                    if (showCadastroCarteira || carteiraToEdit != null) {
                         CadastroCarteira(
                             viewModel = viewModel,
-                            onDismiss = { showCadastroCarteira = false },
+                            carteira = carteiraToEdit,
+                            onDismiss = {
+                                showCadastroCarteira = false
+                                carteiraToEdit = null
+                            },
                             modifier = Modifier.padding(innerPadding)
                         )
                     } else {
-                        ListaCarteiras(carteiras, modifier = Modifier.padding(innerPadding))
+                        ListaCarteiras(
+                            carteiras = carteiras,
+                            onEditCarteira = { carteiraToEdit = it },
+                            onDeleteCarteira = { carteiraToDelete = it },
+                            modifier = Modifier.padding(innerPadding)
+                        )
+
+                        carteiraToDelete?.let { carteira ->
+                            AlertDialog(
+                                onDismissRequest = { carteiraToDelete = null },
+                                confirmButton = {
+                                    TextButton(onClick = {
+                                        viewModel.deleteCarteira(carteira)
+                                        carteiraToDelete = null
+                                    }) {
+                                        Text(stringResource(R.string.confirm))
+                                    }
+                                },
+                                dismissButton = {
+                                    TextButton(onClick = { carteiraToDelete = null }) {
+                                        Text(stringResource(R.string.cancel))
+                                    }
+                                },
+                                title = { Text(stringResource(R.string.delete_carteira)) },
+                                text = { Text(stringResource(R.string.confirm_delete_carteira, carteira.nome)) }
+                            )
+                        }
                     }
                 }
             }
@@ -64,25 +98,48 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun ListaCarteiras(carteiras: List<CarteiraEntity>, modifier: Modifier = Modifier) {
+fun ListaCarteiras(
+    carteiras: List<CarteiraEntity>,
+    onEditCarteira: (CarteiraEntity) -> Unit = {},
+    onDeleteCarteira: (CarteiraEntity) -> Unit = {},
+    modifier: Modifier = Modifier
+) {
     LazyColumn(modifier = modifier) {
         items(carteiras) { carteira ->
-            CarteiraItem(carteira = carteira) {
-                // Handle click on carteira item
-            }
+            CarteiraItem(
+                carteira = carteira,
+                onEditClick = { onEditCarteira(carteira) },
+                onDeleteClick = { onDeleteCarteira(carteira) }
+            )
         }
     }
 }
 
 @Composable
-fun CarteiraItem(carteira: CarteiraEntity, onClick: () -> Unit) {
+fun CarteiraItem(
+    carteira: CarteiraEntity,
+    onEditClick: () -> Unit,
+    onDeleteClick: () -> Unit
+) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 8.dp, vertical = 4.dp)
-            .clickable { onClick() },
+            .padding(horizontal = 8.dp, vertical = 4.dp),
         content = {
-            Text(text = carteira.nome, modifier = Modifier.padding(16.dp))
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(text = carteira.nome, modifier = Modifier.weight(1f))
+                IconButton(onClick = onEditClick) {
+                    Icon(Icons.Filled.Edit, contentDescription = stringResource(R.string.edit_carteira))
+                }
+                IconButton(onClick = onDeleteClick) {
+                    Icon(Icons.Filled.Delete, contentDescription = stringResource(R.string.delete_carteira))
+                }
+            }
         }
     )
 }
@@ -91,6 +148,10 @@ fun CarteiraItem(carteira: CarteiraEntity, onClick: () -> Unit) {
 @Composable
 fun GreetingPreview() {
     InvestmentWalletAppTheme {
-        ListaCarteiras(listOf(CarteiraEntity(1, "Carteira 1"), CarteiraEntity(2, "Carteira 2")))
+        ListaCarteiras(
+            carteiras = listOf(CarteiraEntity(1, "Carteira 1"), CarteiraEntity(2, "Carteira 2")),
+            onEditCarteira = {},
+            onDeleteCarteira = {}
+        )
     }
 }

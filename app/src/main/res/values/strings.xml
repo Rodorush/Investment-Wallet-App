@@ -1,6 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Carteiras de Investimento</string>
-    <string name="add_carteira">Criar nova Carteira</string>
+    <string name="add_carteira">Adicionar Carteira</string>
+    <string name="edit_carteira">Editar Carteira</string>
+    <string name="delete_carteira">Excluir Carteira</string>
+    <string name="confirm_delete_carteira">Você tem certeza que deseja excluir %1$s?</string>
+    <string name="confirm">Confirmar</string>
+    <string name="cancel">Cancelar</string>
+
     <string name="nome_da_carteira">Nome da Carteira</string>
     <string name="salvar">Salvar</string>
 </resources>

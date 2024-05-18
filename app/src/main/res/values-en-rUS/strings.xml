@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Investment Wallets</string>
-    <string name="add_carteira">Add new Wallet</string>
+    <string name="add_carteira">Add Wallet</string>
+    <string name="edit_carteira">Edit Wallet</string>
+    <string name="delete_carteira">Delete Wallet</string>
+    <string name="confirm_delete_carteira">Are you sure you want to delete %1$s?</string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
+
     <string name="nome_da_carteira">Wallet Name</string>
     <string name="salvar">Save</string>
 </resources>
