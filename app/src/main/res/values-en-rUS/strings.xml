@@ -2,4 +2,6 @@
 <resources>
     <string name="app_name">Investment Wallets</string>
     <string name="add_carteira">Add new Wallet</string>
+    <string name="nome_da_carteira">Wallet Name</string>
+    <string name="salvar">Save</string>
 </resources>

@@ -12,7 +12,7 @@ class CarteiraRepository(context: Context) : GenericRepository(context) {
         return carteiraDao.getAllCarteiras()
     }
 
-    fun insertCarteira(carteira: CarteiraEntity) {
+    suspend fun insertCarteira(carteira: CarteiraEntity) {
         carteiraDao.insert(carteira)
     }
 
