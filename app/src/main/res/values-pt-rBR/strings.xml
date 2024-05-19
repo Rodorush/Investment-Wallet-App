@@ -18,4 +18,8 @@
     <string name="confirm_delete_ativo">Você tem certeza que deseja excluir %1$s?</string>
     <string name="nome_do_ativo">Nome do Ativo</string>
     <string name="ticker_do_ativo">Ticker do Ativo</string>
+
+    <!-- Labels para as novas atividades -->
+    <string name="cadastro_ativos_label">Cadastro de Ativos</string>
+    <string name="cadastro_carteiras_label">Cadastro de Carteiras</string>
 </resources>

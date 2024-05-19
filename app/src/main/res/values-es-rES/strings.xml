@@ -4,18 +4,22 @@
     <string name="add_carteira">Agregar Cartera</string>
     <string name="edit_carteira">Editar Cartera</string>
     <string name="delete_carteira">Eliminar Cartera</string>
-    <string name="confirm_delete_carteira">¿Está seguro de que desea eliminar %1$s?</string>
+    <string name="confirm_delete_carteira">¿Estás seguro de que deseas eliminar %1$s?</string>
     <string name="confirm">Confirmar</string>
     <string name="cancel">Cancelar</string>
 
     <string name="nome_da_carteira">Nombre de la Cartera</string>
     <string name="salvar">Guardar</string>
 
-    <!-- Novas Strings -->
+    <!-- Nuevas cadenas -->
     <string name="add_ativo">Agregar Activo</string>
     <string name="edit_ativo">Editar Activo</string>
     <string name="delete_ativo">Eliminar Activo</string>
-    <string name="confirm_delete_ativo">¿Está seguro de que desea eliminar %1$s?</string>
+    <string name="confirm_delete_ativo">¿Estás seguro de que deseas eliminar %1$s?</string>
     <string name="nome_do_ativo">Nombre del Activo</string>
     <string name="ticker_do_ativo">Ticker del Activo</string>
+
+    <!-- Etiquetas para las nuevas actividades -->
+    <string name="cadastro_ativos_label">Registro de Activos</string>
+    <string name="cadastro_carteiras_label">Registro de Carteras</string>
 </resources>

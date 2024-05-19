@@ -12,17 +12,31 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.InvestmentWalletApp"
         tools:targetApi="31">
+
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.activities.MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
             android:theme="@style/Theme.InvestmentWalletApp">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".ui.activities.CadastroAtivosActivity"
+            android:exported="true"
+            android:label="@string/cadastro_ativos_label"
+            android:theme="@style/Theme.InvestmentWalletApp">
+        </activity>
+
+        <activity
+            android:name=".ui.activities.CadastroCarteirasActivity"
+            android:exported="true"
+            android:label="@string/cadastro_carteiras_label"
+            android:theme="@style/Theme.InvestmentWalletApp">
+        </activity>
+
     </application>
 
 </manifest>

@@ -13,7 +13,7 @@ import br.com.rodorush.investmentwalletapp.data.entity.LancamentoAtivoEntity
 
 @Database(
     entities = [AtivoEntity::class, CarteiraEntity::class, LancamentoAtivoEntity::class],
-    version = 2,
+    version = 3,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
