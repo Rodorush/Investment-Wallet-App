@@ -10,4 +10,12 @@
 
     <string name="nome_da_carteira">Wallet Name</string>
     <string name="salvar">Save</string>
+
+    <!-- Novas Strings -->
+    <string name="add_ativo">Add Asset</string>
+    <string name="edit_ativo">Edit Asset</string>
+    <string name="delete_ativo">Delete Asset</string>
+    <string name="confirm_delete_ativo">Are you sure you want to delete %1$s?</string>
+    <string name="nome_do_ativo">Asset Name</string>
+    <string name="ticker_do_ativo">Asset Ticker</string>
 </resources>

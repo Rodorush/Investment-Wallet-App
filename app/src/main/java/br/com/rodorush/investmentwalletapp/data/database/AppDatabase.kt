@@ -13,7 +13,7 @@ import br.com.rodorush.investmentwalletapp.data.entity.LancamentoAtivoEntity
 
 @Database(
     entities = [AtivoEntity::class, CarteiraEntity::class, LancamentoAtivoEntity::class],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
@@ -32,7 +32,9 @@ abstract class AppDatabase : RoomDatabase() {
                     context.applicationContext,
                     AppDatabase::class.java,
                     "iwdb"
-                ).build()
+                )
+                    .fallbackToDestructiveMigration() // Adicione esta linha
+                    .build()
                 INSTANCE = instance
                 instance
             }

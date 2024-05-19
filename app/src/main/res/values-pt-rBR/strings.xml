@@ -10,4 +10,12 @@
 
     <string name="nome_da_carteira">Nome da Carteira</string>
     <string name="salvar">Salvar</string>
+
+    <!-- Novas Strings -->
+    <string name="add_ativo">Adicionar Ativo</string>
+    <string name="edit_ativo">Editar Ativo</string>
+    <string name="delete_ativo">Excluir Ativo</string>
+    <string name="confirm_delete_ativo">Você tem certeza que deseja excluir %1$s?</string>
+    <string name="nome_do_ativo">Nome do Ativo</string>
+    <string name="ticker_do_ativo">Ticker do Ativo</string>
 </resources>

@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Carteiras de Inversión</string>
+    <string name="app_name">Carteras de Inversión</string>
     <string name="add_carteira">Agregar Cartera</string>
     <string name="edit_carteira">Editar Cartera</string>
     <string name="delete_carteira">Eliminar Cartera</string>
-    <string name="confirm_delete_carteira">¿Estás seguro de que deseas eliminar %1$s?</string>
+    <string name="confirm_delete_carteira">¿Está seguro de que desea eliminar %1$s?</string>
     <string name="confirm">Confirmar</string>
     <string name="cancel">Cancelar</string>
-    <string name="nome_da_carteira">Nombre de la billetera</string>
-    <string name="salvar">Ahorrar</string>
+
+    <string name="nome_da_carteira">Nombre de la Cartera</string>
+    <string name="salvar">Guardar</string>
+
+    <!-- Novas Strings -->
+    <string name="add_ativo">Agregar Activo</string>
+    <string name="edit_ativo">Editar Activo</string>
+    <string name="delete_ativo">Eliminar Activo</string>
+    <string name="confirm_delete_ativo">¿Está seguro de que desea eliminar %1$s?</string>
+    <string name="nome_do_ativo">Nombre del Activo</string>
+    <string name="ticker_do_ativo">Ticker del Activo</string>
 </resources>
