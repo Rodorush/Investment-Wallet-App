@@ -1,3 +1,5 @@
+package br.com.rodorush.investmentwalletapp.viewmodel
+
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.rodorush.investmentwalletapp.data.entity.AtivoEntity

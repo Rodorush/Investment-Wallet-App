@@ -3,8 +3,6 @@ package br.com.rodorush.investmentwalletapp.data.repository
 import android.content.Context
 import br.com.rodorush.investmentwalletapp.data.dao.AtivoDao
 import br.com.rodorush.investmentwalletapp.data.entity.AtivoEntity
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import kotlinx.coroutines.flow.Flow
 
 class AtivoRepository(context: Context) : GenericRepository(context) {
@@ -15,21 +13,19 @@ class AtivoRepository(context: Context) : GenericRepository(context) {
         return ativoDao.getAllAtivos()
     }
 
+    suspend fun getAtivosByTicker(ticker: String): List<AtivoEntity> {
+        return ativoDao.getAtivosByTicker(ticker)
+    }
+
     suspend fun addAtivo(ativo: AtivoEntity) {
-        withContext(Dispatchers.IO) {
-            ativoDao.insert(ativo)
-        }
+        ativoDao.insert(ativo)
     }
 
     suspend fun updateAtivo(ativo: AtivoEntity) {
-        withContext(Dispatchers.IO) {
-            ativoDao.update(ativo)
-        }
+        ativoDao.updateAtivo(ativo)
     }
 
     suspend fun deleteAtivo(ativo: AtivoEntity) {
-        withContext(Dispatchers.IO) {
-            ativoDao.delete(ativo)
-        }
+        ativoDao.delete(ativo)
     }
 }

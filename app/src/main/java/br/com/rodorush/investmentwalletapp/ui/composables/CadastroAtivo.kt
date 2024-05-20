@@ -12,6 +12,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import br.com.rodorush.investmentwalletapp.R
 import br.com.rodorush.investmentwalletapp.data.entity.AtivoEntity
+import br.com.rodorush.investmentwalletapp.viewmodel.AtivosViewModel
 import kotlinx.coroutines.launch
 
 @Composable

@@ -110,53 +110,6 @@ fun CarteiraItem(
     )
 }
 
-@Composable
-fun ListaAtivos(
-    modifier: Modifier = Modifier,
-    ativos: List<AtivoEntity>,
-    onEditAtivo: (AtivoEntity) -> Unit = {},
-    onDeleteAtivo: (AtivoEntity) -> Unit = {}
-) {
-    LazyColumn(modifier = modifier) {
-        items(ativos) { ativo ->
-            AtivoItem(
-                ativo = ativo,
-                onEditClick = { onEditAtivo(ativo) },
-                onDeleteClick = { onDeleteAtivo(ativo) }
-            )
-        }
-    }
-}
-
-@Composable
-fun AtivoItem(
-    ativo: AtivoEntity,
-    onEditClick: () -> Unit,
-    onDeleteClick: () -> Unit
-) {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 8.dp, vertical = 4.dp),
-        content = {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                Text(text = ativo.nome, modifier = Modifier.weight(1f))
-                IconButton(onClick = onEditClick) {
-                    Icon(Icons.Filled.Edit, contentDescription = stringResource(R.string.edit_ativo))
-                }
-                IconButton(onClick = onDeleteClick) {
-                    Icon(Icons.Filled.Delete, contentDescription = stringResource(R.string.delete_ativo))
-                }
-            }
-        }
-    )
-}
-
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {

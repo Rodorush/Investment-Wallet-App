@@ -1,5 +1,6 @@
 package br.com.rodorush.investmentwalletapp.data.repository
 
+import br.com.rodorush.investmentwalletapp.network.AlphaVantageApi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

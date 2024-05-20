@@ -8,5 +8,7 @@ import androidx.room.PrimaryKey
 data class AtivoEntity(
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "atv_id") val id: Int = 0,
     @ColumnInfo(name = "atv_nome") val nome: String,
-    @ColumnInfo(name = "atv_ticker") val ticker: String
+    @ColumnInfo(name = "atv_ticker") val ticker: String,
+    @ColumnInfo(name = "atv_ultimoPreco") val ultimoPreco: Double? = null,
+    @ColumnInfo(name = "atv_dataUltimoPreco") val dataUltimoPreco: String? = null
 )
