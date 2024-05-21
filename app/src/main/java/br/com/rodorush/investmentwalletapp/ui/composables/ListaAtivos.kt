@@ -8,16 +8,20 @@ import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import br.com.rodorush.investmentwalletapp.BuildConfig
 import br.com.rodorush.investmentwalletapp.data.entity.AtivoEntity
+import br.com.rodorush.investmentwalletapp.viewmodel.StockViewModel
 
 @Composable
 fun ListaAtivos(
-    modifier: Modifier = Modifier,
     ativos: List<AtivoEntity>,
-    onEditAtivo: (AtivoEntity) -> Unit = {},
-    onDeleteAtivo: (AtivoEntity) -> Unit = {}
+    stockViewModel: StockViewModel,
+    onEditAtivo: (AtivoEntity) -> Unit,
+    onDeleteAtivo: (AtivoEntity) -> Unit,
+    modifier: Modifier = Modifier
 ) {
     LazyColumn(modifier = modifier) {
         items(ativos) { ativo ->
@@ -26,6 +30,9 @@ fun ListaAtivos(
                 onEditClick = { onEditAtivo(ativo) },
                 onDeleteClick = { onDeleteAtivo(ativo) }
             )
+            LaunchedEffect(ativo.ticker) {
+                stockViewModel.fetchStockData(ativo.ticker, BuildConfig.ALPHA_VANTAGE_API_KEY)
+            }
         }
     }
 }

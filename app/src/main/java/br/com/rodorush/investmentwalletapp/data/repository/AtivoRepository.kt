@@ -2,30 +2,31 @@ package br.com.rodorush.investmentwalletapp.data.repository
 
 import android.content.Context
 import br.com.rodorush.investmentwalletapp.data.dao.AtivoDao
+import br.com.rodorush.investmentwalletapp.data.database.AppDatabase
 import br.com.rodorush.investmentwalletapp.data.entity.AtivoEntity
 import kotlinx.coroutines.flow.Flow
 
-class AtivoRepository(context: Context) : GenericRepository(context) {
+class AtivoRepository(context: Context) : IAtivoRepository {
 
-    private val ativoDao: AtivoDao = database.ativoDao()
+    private val ativoDao: AtivoDao = AppDatabase.getDatabase(context).ativoDao()
 
-    fun getAllAtivos(): Flow<List<AtivoEntity>> {
+    override fun getAllAtivos(): Flow<List<AtivoEntity>> {
         return ativoDao.getAllAtivos()
     }
 
-    suspend fun getAtivosByTicker(ticker: String): List<AtivoEntity> {
-        return ativoDao.getAtivosByTicker(ticker)
-    }
-
-    suspend fun addAtivo(ativo: AtivoEntity) {
+    override suspend fun addAtivo(ativo: AtivoEntity) {
         ativoDao.insert(ativo)
     }
 
-    suspend fun updateAtivo(ativo: AtivoEntity) {
-        ativoDao.updateAtivo(ativo)
+    override suspend fun updateAtivo(ativo: AtivoEntity) {
+        ativoDao.update(ativo)
     }
 
-    suspend fun deleteAtivo(ativo: AtivoEntity) {
+    override suspend fun deleteAtivo(ativo: AtivoEntity) {
         ativoDao.delete(ativo)
+    }
+
+    override suspend fun getAtivosByTicker(ticker: String): List<AtivoEntity> {
+        return ativoDao.getAtivosByTicker(ticker)
     }
 }

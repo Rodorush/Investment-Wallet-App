@@ -1,12 +1,11 @@
 package br.com.rodorush.investmentwalletapp.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.rodorush.investmentwalletapp.data.entity.AtivoEntity
-import br.com.rodorush.investmentwalletapp.data.repository.AtivoRepository
+import br.com.rodorush.investmentwalletapp.data.repository.IAtivoRepository
 import br.com.rodorush.investmentwalletapp.domain.model.StockData
 import br.com.rodorush.investmentwalletapp.network.AlphaVantageApi
 import br.com.rodorush.investmentwalletapp.network.toStockData
@@ -14,7 +13,7 @@ import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class StockViewModel(private val ativoRepository: AtivoRepository) : ViewModel() {
+class StockViewModel(private val ativoRepository: IAtivoRepository) : ViewModel() {
 
     private val _stockData = MutableLiveData<StockData>()
     val stockData: LiveData<StockData> get() = _stockData
@@ -34,16 +33,15 @@ class StockViewModel(private val ativoRepository: AtivoRepository) : ViewModel()
                     val stockData = response.body()?.toStockData(ticker)
                     stockData?.let {
                         _stockData.value = it
-                        Log.d("StockViewModel", "Fetched stock data: $it")
                         updateAtivoWithStockData(ticker, it)
                     }
                 } else {
                     // Handle the error
-                    Log.e("StockViewModel", "Error fetching stock data: ${response.errorBody()?.string()}")
+                    println("Error fetching stock data: ${response.errorBody()?.string()}")
                 }
             } catch (e: Exception) {
                 // Handle the exception
-                Log.e("StockViewModel", "Exception fetching stock data: ${e.message}")
+                println("Exception fetching stock data: ${e.message}")
             }
         }
     }
@@ -56,7 +54,6 @@ class StockViewModel(private val ativoRepository: AtivoRepository) : ViewModel()
                 dataUltimoPreco = stockData.date
             )
             ativoRepository.updateAtivo(updatedAtivo)
-            Log.d("StockViewModel", "Updated ativo with stock data: $updatedAtivo")
         }
     }
 }

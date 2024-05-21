@@ -5,33 +5,29 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
-import androidx.compose.material3.Card
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import br.com.rodorush.investmentwalletapp.R
 import br.com.rodorush.investmentwalletapp.data.entity.AtivoEntity
 import br.com.rodorush.investmentwalletapp.data.entity.CarteiraEntity
+import br.com.rodorush.investmentwalletapp.data.repository.AtivoRepository
+import br.com.rodorush.investmentwalletapp.data.repository.IAtivoRepository
 import br.com.rodorush.investmentwalletapp.ui.theme.InvestmentWalletAppTheme
+import br.com.rodorush.investmentwalletapp.viewmodel.StockViewModel
+import br.com.rodorush.investmentwalletapp.viewmodel.StockViewModelFactory
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
 
 @OptIn(ExperimentalMaterial3Api::class)
 class MainActivity : ComponentActivity() {
@@ -39,12 +35,14 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             InvestmentWalletAppTheme {
+                val ativosRepository = AtivoRepository(applicationContext)
+                val stockViewModel: StockViewModel = viewModel(factory = StockViewModelFactory(ativosRepository))
+
                 Scaffold(
                     topBar = {
                         TopAppBar(title = { Text("Menu Principal") })
                     }
                 ) { innerPadding ->
-                    // Adicione o innerPadding ao Modifier para garantir que o conteúdo não fique oculto atrás da AppBar
                     Box(modifier = Modifier.padding(innerPadding)) {
                         MenuPrincipal(
                             onNavigateToAtivos = {
@@ -113,6 +111,9 @@ fun CarteiraItem(
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
+    val dummyAtivoRepository = DummyAtivoRepository()
+    val stockViewModel = StockViewModel(dummyAtivoRepository)
+
     InvestmentWalletAppTheme {
         Column {
             ListaCarteiras(
@@ -122,6 +123,7 @@ fun GreetingPreview() {
             )
             ListaAtivos(
                 ativos = listOf(AtivoEntity(1, "Ativo 1", "ATV1"), AtivoEntity(2, "Ativo 2", "ATV2")),
+                stockViewModel = stockViewModel,
                 onEditAtivo = {},
                 onDeleteAtivo = {}
             )
