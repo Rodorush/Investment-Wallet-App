@@ -28,7 +28,7 @@ class StockViewModel(private val ativoRepository: IAtivoRepository) : ViewModel(
     fun fetchStockData(ticker: String, apiKey: String) {
         viewModelScope.launch {
             try {
-                val response = alphaVantageApi.getStockData("TIME_SERIES_DAILY", ticker, apiKey)
+                val response = alphaVantageApi.getStockData("TIME_SERIES_DAILY", "$ticker${".SAO"}", apiKey)
                 if (response.isSuccessful) {
                     val stockData = response.body()?.toStockData(ticker)
                     stockData?.let {
